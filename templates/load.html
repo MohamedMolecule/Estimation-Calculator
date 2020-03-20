@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Load
+{% endblock %}
+
+{% block body %}
+    <form method="POST" action="/load"> 
+        <table>
+            <tr>
+                <th style="font-size: x-large;">ID</th>
+                <th style="font-size: x-large;">Player 1</th>
+                <th style="font-size: x-large;">Player 2</th>
+                <th style="font-size: x-large;">Player 3</th>
+                <th style="font-size: x-large;">Player 4</th>
+                <th style="font-size: x-large;">Type</th>
+            </tr>
+        {% for bola in bolas %}
+            <tr>
+                <th>{{bola[0]}}</th>
+                <th>{{bola[1]}}</th>
+                <th>{{bola[2]}}</th>
+                <th>{{bola[3]}}</th>
+                <th>{{bola[4]}}</th>
+                <th>{{bola[5]}}</th>
+            </tr>
+        {% endfor %}
+        </table>
+        <div class="seperator"></div>
+        <input class="textbox" name="bolaid" placeholder="Type the id to load or delete" type="text">
+        <div class="seperator"></div>
+        <div class="headers" style="font-size: 15px;" id="alert">{{alert}}</div>
+        <button class="button" type="submit" name="submitbutton" value="load">Load</button>
+        <div class="seperator"></div>
+        <button class="button" type="submit" name="submitbutton" value="delete">Delete</button>
+        <div class="seperator"></div>
+        <button class="button" type="submit" name="submitbutton" value="back">Back</button>
+    </form>
+    <script>
+        var color="{{background}}"
+        document.body.style.backgroundColor = color;
+    </script>
+{% endblock %}

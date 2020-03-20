@@ -1,0 +1,374 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Calculator
+{% endblock %}
+
+{% block body %}
+    <table>
+        <form action="/calculator" method="POST" id="round"></form>
+        <tr>
+            <th style="font-size: large;">Round</th>
+            <th><input style="font-size: large;" class="textbox" name="name1" id="name1" placeholder="Type or change name" type="text" form="round"></th>
+            <th><input style="font-size: large;" class="textbox" name="name2" id="name2" placeholder="Type or change name" type="text" form="round"></th>
+            <th><input style="font-size: large;" class="textbox" name="name3" id="name3" placeholder="Type or change name" type="text" form="round"></th>
+            <th><input style="font-size: large;" class="textbox" name="name4" id="name4" placeholder="Type or change name" type="text" form="round"></th>
+        </tr>
+            {% if bola == "Solo" %}
+            {% for r in rounds %}
+            <tr>
+                <th>{{r[13]}}<div class="cut" >{{r[12]}}</div>
+                    <div class="headers">{{r[14]}}</div>
+                </th>
+                <th>
+                    <div class="headers">Call: {{r[4]}}</div> 
+                    <div class="headers">Got: {{r[8]}}</div>
+                    <div class="headers">Score: {{r[0]}}</div>
+                </th>
+                <th>
+                    <div class="headers">Call: {{r[5]}}</div> 
+                    <div class="headers">Got: {{r[9]}}</div>
+                    <div class="headers">Score: {{r[1]}}</div>
+                </th>
+                <th>
+                    <div class="headers">Call: {{r[6]}}</div> 
+                    <div class="headers">Got: {{r[10]}}</div>
+                    <div class="headers">Score: {{r[2]}}</div>
+                <th>
+                    <div class="headers">Call: {{r[7]}}</div> 
+                    <div class="headers">Got: {{r[11]}}</div>
+                    <div class="headers">Score: {{r[3]}}</div>
+                </th>
+            </tr>
+            {% endfor %}
+            {% else %}
+            {% for r in rounds %}
+            <tr>
+                <th>{{r[13]}}<div class="cut" >{{r[12]}}</div>
+                    <div class="headers">{{r[14]}}</div>
+                </th>
+                <th>
+                    <div class="headers">Call: {{r[4]}}</div> 
+                    <div class="headers">Got: {{r[8]}}</div>
+                    <div class="headers">Score: {{r[0]}}</div>
+                    <div class="headers">Team: {{r[0]+r[2]}}</div>
+                </th>
+                <th>
+                    <div class="headers">Call: {{r[5]}}</div> 
+                    <div class="headers">Got: {{r[9]}}</div>
+                    <div class="headers">Score: {{r[1]}}</div>
+                    <div class="headers">Team: {{r[1]+r[3]}}</div>
+                </th>
+                <th>
+                    <div class="headers">Call: {{r[6]}}</div> 
+                    <div class="headers">Got: {{r[10]}}</div>
+                    <div class="headers">Score: {{r[2]}}</div>
+                    <div class="headers">Team: {{r[0]+r[2]}}</div>
+                <th>
+                    <div class="headers">Call: {{r[7]}}</div> 
+                    <div class="headers">Got: {{r[11]}}</div>
+                    <div class="headers">Score: {{r[3]}}</div>
+                    <div class="headers">Team: {{r[1]+r[3]}}</div>
+                </th>
+            </tr>
+            {% endfor %}
+            {% endif %}
+
+        <tr>
+            <th>
+                <button class="cut" value="&#9788;" onclick="cutnext(this)">&clubs;</button>
+            </th>
+                <td>
+                    <input class="textbox" id="c1" name="call1" placeholder="Number of tricks"  type="text" form="round">
+                    <input class="textbox" name="got1" placeholder="Collected tricks" type="text" form="round">
+                    <button class="buttontable" type="button" name="with1" value="false" onclick="onoff(this);">W</button>
+                    <button class="buttontable" type="button" name="risk1" value="false" onclick="onoff(this);">R</button>
+                    <button class="buttontable" type="button" name="dc1" value="false" onclick="onoff(this);">DC</button>
+                </td>
+                <td>
+                    <input class="textbox" id="c2" name="call2" placeholder="Number of tricks" type="text" form="round">
+                    <input class="textbox" name="got2" placeholder="Collected tricks" type="text" form="round">
+                    <button class="buttontable" type="button" name="with2" value="false" onclick="onoff(this)">W</button>
+                    <button class="buttontable" type="button" name="risk2" value="false" onclick="onoff(this)">R</button>
+                    <button class="buttontable" type="button" name="dc2" value="false" onclick="onoff(this)">DC</button>
+                </td>
+                <td>
+                    <input class="textbox" id="c3" name="call3" placeholder="Number of tricks" type="text" form="round">
+                    <input class="textbox" name="got3" placeholder="Collected tricks" type="text" form="round">
+                    <button class="buttontable" type="button" name="with3" value="false" onclick="onoff(this)">W</button>
+                    <button class="buttontable" type="button" name="risk3" value="false" onclick="onoff(this)">R</button>
+                    <button class="buttontable" type="button" name="dc3" value="false" onclick="onoff(this)">DC</button>
+                </td>
+                <td>
+                    <input class="textbox" id="c4" name="call4" placeholder="Number of tricks" type="text" form="round">
+                    <input class="textbox" name="got4" placeholder="Collected tricks" type="text" form="round">
+                    <button class="buttontable" type="button" name="with4" value="false" onclick="onoff(this)">W</button>
+                    <button class="buttontable" type="button" name="risk4" value="false" onclick="onoff(this)">R</button>
+                    <button class="buttontable" type="button" name="dc4" value="false" onclick="onoff(this)">DC</button>
+                </td>
+        </tr>
+    </table>
+    <div class="seperator"></div>
+    <input form="round" type="text" style="display: none"id="sub" name="elements">
+    <div class="headers" style="font-size: 15px;" id="alert">{{alert}}</div>
+    <button class="button" type="submit" name="submit" value="submit" id="calculate" onclick="newvalues()" form="round">Calculate</button>
+    <div class="seperator" id="seperator"></div>
+    <button class="button" type="submit" name="submit" value="delete" id="delete" form="round">Delete</button>
+    <div class="seperator"></div>
+    <button class="button" type="button" id="settingsopen" value="open" onclick="menu(this)">Settings</button>
+    <div class="seperator"></div>
+    <button class="button" type="submit" name="submit" id="back" value="back" form="round">Back</button>
+    <div class="headerssettings" style="font-size: 20px;">Call and with score</div>
+    <input class="textboxsettings" name="withvalue" id="withvalue" type="text" form="round">
+    <div class="headerssettings" style="font-size: 20px;">Win score</div>
+    <input class="textboxsettings" name="winvalue" id="winvalue" type="text" form="round">
+    <div class="headerssettings" style="font-size: 20px;">Lose score</div>
+    <input class="textboxsettings" name="losevalue" id="losevalue" type="text" form="round">
+    <div class="headerssettings" style="font-size: 20px;">Risk score</div>
+    <input class="textboxsettings" name="riskvalue" id="riskvalue" type="text" form="round">
+    <div class="headerssettings" style="font-size: 20px;">Only lose score</div>
+    <input class="textboxsettings" name="onlylose" id="onlylose" type="text" form="round">
+    <div class="headerssettings" style="font-size: 20px;">Only win score</div>
+    <input class="textboxsettings" name="onlywin"  id="onlywin" type="text" form="round">
+    <div class="headerssettings" style="font-size: 20px;">Dash call winning score in over</div>
+    <input class="textboxsettings" name="dcover" id="dcover" type="text" form="round">
+    <div class="headerssettings" style="font-size: 20px;">Dash call winning score in under</div>
+    <input class="textboxsettings" name="dcunder" id="dcunder" type="text" form="round">
+    <div class="headerssettings" style="font-size: 20px;">Dash call losing score in over</div>
+    <input class="textboxsettings" name="dcoverlose" id="dcoverlose" type="text" form="round">
+    <div class="headerssettings" style="font-size: 20px;">Dash call losing score in under</div>
+    <input class="textboxsettings" name="dcunderlose" id="dcunderlose" type="text" form="round">
+    <div class="headerssettings" style="font-size: 20px;">Win couples score</div>
+    <input class="textboxsettings" name="wincouples" id="wincouples" type="text" form="round">
+    <div class="headerssettings" style="font-size: 20px;">Lose couples score</div>
+    <input class="textboxsettings" name="losecouples" id="losecouples" type="text" form="round">
+    <button class="buttontable" style="margin-left: auto; margin-right: auto; display: none;" type="button" id="double3" onclick="onoff(this)">Double on three calls</button>
+    <button class="buttontable" style="margin-left: auto; margin-right: auto; display: none;" type="button" id="double4" onclick="onoff(this)">Double on four calls</button>
+    <button class="buttontable" style="margin-left: auto; margin-right: auto; display: none;" type="button" id="doublelose"  onclick="onoff(this)">Double on four loses</button>
+    <button class="buttontable" style="margin-left: auto; margin-right: auto; display: none;" type="button" id="color"  onclick="colorbutton(this)"></button>
+    <div class="seperator"></div>
+    <button class="button" type="button" id="default" value="default" onclick="defaultconfig()" style="display: none;">Default</button>
+    <div class="seperator"></div>
+    <button class="button" type="submit" name="submit" id="settingssave" value="save" style="display: none;" onclick="newvalues()" form="round">Save</button>
+    <div class="seperator"></div>
+    <button class="button" type="button" id="settingsclose" value="close" onclick="menu(this);config(configure);stylingbuttons();" style="display: none;">Close</button>
+    <button class="buttontable" type="button" id="img" value="suns" style="display: none;"></button>
+    
+    </form>
+    <script>
+    var configure=["{{color}}", "{{dcover}}", "{{dcunder}}", "{{withvalue}}", "{{riskvalue}}", "{{onlylose}}", "{{onlywin}}", "{{double3}}", "{{double4}}", "{{doublelose}}", "{{winvalue}}", "{{losevalue}}", "{{wincouples}}", "{{losecouples}}", "{{dcoverlose}}", "{{dcunderlose}}", "{{name1}}", "{{name2}}", "{{name3}}", "{{name4}}"];
+    function background(color) {
+        document.body.style.backgroundColor = color;
+    }
+    var cutt = "{{rounds}}";
+
+    function defaultconfig() {
+        background("white");
+        document.getElementById("withvalue").value = 10;
+        document.getElementById("riskvalue").value = 10;
+        document.getElementById("onlylose").value = 10;
+        document.getElementById("onlywin").value = 10;
+        document.getElementById("dcover").value = 33;
+        document.getElementById("dcunder").value = 33;
+        document.getElementById("dcoverlose").value = 33;
+        document.getElementById("dcunderlose").value = 33;
+        document.getElementById("wincouples").value = 10;
+        document.getElementById("losecouples").value = 10;
+        document.getElementById("losevalue").value = 0;
+        document.getElementById("double3") .value = "true";
+        document.getElementById("double4").value = "true";
+        document.getElementById("doublelose").value = "true";
+        document.getElementById("color").value = "white";
+        document.getElementById("winvalue").value = 10;
+        document.getElementById("double3").style.color = "rgb(248, 132, 23)";
+        document.getElementById("double4").style.color = "rgb(248, 132, 23)";
+        document.getElementById("doublelose").style.color = "rgb(248, 132, 23)";
+        document.getElementById("color").innerHTML = "White";
+    }
+    
+    function config(config) {
+        background(config[0]);
+        document.getElementById("withvalue").value = config[3];
+        document.getElementById("riskvalue").value = config[4];
+        document.getElementById("onlylose").value = config[5];
+        document.getElementById("onlywin").value = config[6];
+        document.getElementById("dcover").value = config[1];
+        document.getElementById("dcunder").value = config[2];
+        document.getElementById("double3") .value = config[7];
+        document.getElementById("double4").value = config[8];
+        document.getElementById("doublelose").value = config[9];
+        document.getElementById("color").value = config[0];
+        document.getElementById("winvalue").value = config[10];
+        document.getElementById("losevalue").value = config[11];
+        document.getElementById("wincouples").value = config[12];
+        document.getElementById("losecouples").value = config[13];
+        document.getElementById("dcoverlose").value = config[14];
+        document.getElementById("dcunderlose").value = config[15];
+        document.getElementById("name1").value = config[16];
+        document.getElementById("name2").value = config[17];
+        document.getElementById("name3").value = config[18];
+        document.getElementById("name4").value = config[19];
+        if (config[0] == "white"){
+            document.getElementById("color").innerHTML = "White"
+        }
+        else if (config[0] == "black"){
+            document.getElementById("color").innerHTML = "Black"
+        }
+        else if (config[0] == "darkred"){
+            document.getElementById("color").innerHTML = "Red"
+        }
+        else {
+            document.getElementById("color").innerHTML = "Blue"
+        }
+    }
+
+    config(configure);
+
+    var cut = document.getElementById("img");
+    cut.value = "♣";
+    function cutnext(obj) {
+        if (obj.value == "&#9788;"){
+            obj.value = "&spades;";
+            cut.value = "♠";
+            obj.innerHTML = "&spades;"
+        }
+        else if (obj.value == "&spades;"){
+            obj.value = "&hearts;";
+            cut.value = "♥";
+            obj.innerHTML = "&hearts;"
+        }
+        else if (obj.value == "&hearts;"){
+            obj.value = "&diams;";
+            cut.value = "♦";
+            obj.innerHTML = "&diams;"
+        }
+        else if (obj.value == "&diams;"){
+            obj.value = "&clubs;";
+            cut.value = "♣";
+            obj.innerHTML = "&clubs;"
+        }
+        else {
+            obj.value = "&#9788;";
+            cut.value = "☼"
+            obj.innerHTML = "&#9788;"
+        }
+    }   
+
+    function menu(x) {
+        var boxes = document.getElementsByClassName("textboxsettings");
+        var headers = document.getElementsByClassName("headerssettings");
+
+        if (x.value == "close")
+        {
+            for (var i = 0, length=boxes.length; i < length; i++)
+            {
+                boxes[i].style.display = "none";
+            }
+            for (var i = 0, length=headers.length; i < length; i++)
+            {
+                headers[i].style.display = "none";
+            }
+            document.getElementById("settingsclose").style.display = "none";
+            document.getElementById("double3").style.display = "none";
+            document.getElementById("double4").style.display = "none";
+            document.getElementById("doublelose").style.display = "none";
+            document.getElementById("color").style.display = "none";
+            document.getElementById("settingssave").style.display = "none";
+            document.getElementById("default").style.display = "none";
+            document.getElementById("back").style.display = "block";
+            document.getElementById("settingsopen").style.display = "block";
+            document.getElementById("calculate").style.display = "block";
+            document.getElementById("delete").style.display = "block";
+            document.getElementById("seperator").style.display = "block";
+            document.getElementById("alert").style.display = "block";
+            background(config[0]);
+            
+        }
+        else 
+        {
+            for (var i = 0, length=boxes.length; i < length; i++)
+            {
+                boxes[i].style.display = "block";
+            }
+            for (var i = 0, length=headers.length; i < length; i++)
+            {
+                headers[i].style.display = "block";
+            }
+            document.getElementById("settingsclose").style.display = "block";
+            document.getElementById("settingssave").style.display = "block";
+            document.getElementById("double3").style.display = "block";
+            document.getElementById("double4").style.display = "block";
+            document.getElementById("doublelose").style.display = "block";
+            document.getElementById("color").style.display = "block";
+            document.getElementById("default").style.display = "block";
+            document.getElementById("back").style.display = "none";
+            document.getElementById("settingsopen").style.display = "none";
+            document.getElementById("calculate").style.display = "none";
+            document.getElementById("delete").style.display = "none";
+            document.getElementById("seperator").style.display = "none";
+            document.getElementById("alert").style.display = "none";
+        }
+    }
+
+    buttontables = document.getElementsByClassName("buttontable");
+    function stylingbuttons() {
+            for (var i = 0, lens = buttontables.length; i < lens; i++){
+            if (buttontables[i].value == "true"){
+                buttontables[i].style.color = "rgb(248, 132, 23)";
+            }
+            else {
+                buttontables[i].style.color = "#818181";
+            }
+        }
+    }
+
+    stylingbuttons()
+
+    function onoff(ofb) {
+        var ofb;
+        if (ofb.value == "true")
+        {
+            ofb.value = "false";
+            ofb.style.color = "#818181";
+        }
+        else
+        {
+            ofb.value = "true";
+            ofb.style.color = "rgb(248, 132, 23)";
+        }
+    }
+
+    function colorbutton(ofb) {
+        if (ofb.value == "white"){
+            ofb.value = "black";
+            background("black");
+            ofb.innerHTML = "Black";
+        }
+        else if (ofb.value == "black"){
+            ofb.value = "darkblue";
+            background("darkblue");
+            ofb.innerHTML = "Blue";
+        }
+        else if (ofb.value == "darkblue"){
+            ofb.value = "darkred";
+            background("darkred");
+            ofb.innerHTML = "Red";
+        }
+        else{
+            ofb.value ="white";
+            background("white");
+            ofb.innerHTML = "White";
+        }
+    }
+
+    sub = document.getElementById("sub");
+    values = document.getElementsByClassName ("buttontable");
+    length = values.length;
+    newvalues()
+    function newvalues() {
+        sub.value = ""
+        for (var i = 0; i < length ; i++){
+        sub.value += values[i].value + " ";
+    }
+    } </script>
+{% endblock %}

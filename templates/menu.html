@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Menu
+{% endblock %}
+
+{% block body %}
+    <form method="POST" action="/menu"> 
+        <button class="button" type="submit" name="submitbutton" value="solo">Solo</button>
+        <div class="seperator"></div>
+        <button class="button" type="submit" name="submitbutton" value="couples">Couples</button>
+        <div class="seperator"></div>
+        <button class="button" type="submit" name="submitbutton" value="load">Load</button>
+        <div class="seperator"></div>
+        <button class="button" type="submit" name="submitbutton" value="back">Back</button>
+    </form>
+    <script>
+        var color="{{background}}"
+        document.body.style.backgroundColor = color;
+    </script>
+{% endblock %}

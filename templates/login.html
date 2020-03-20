@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Login
+{% endblock %}
+
+{% block body %}
+    <form method="POST" action="/"> 
+        <input class="textbox" name="username" placeholder="Username" type="text">
+        <div class="seperator"></div>
+        <input class="textbox" name="password" placeholder="Password" type="password">
+        <div class="seperator"></div>
+        <div class="headers" style="font-size: 15px;" id="alert">{{alert}}</div>
+        <button class="button" type="submit" name="submitbutton" value="login">Login</button>
+        <div class="seperator"></div>
+        <button class="button" type="submit" name="submitbutton" value="register">Register</button>
+    </form>
+{% endblock %}

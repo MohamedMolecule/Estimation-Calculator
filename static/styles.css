@@ -1,0 +1,164 @@
+.button {
+    background-color: transparent; 
+    border: none;
+    color: #818181;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    border: solid 2px transparent;
+}
+
+.button:hover {
+    color: rgb(248, 132, 23);
+    border-color: rgb(248, 132, 23);
+}
+.button:focus {
+    outline: rgb(248, 132, 23) !important;
+}
+
+body {
+      background-color: white;
+}
+
+table {
+    width: 50%;
+    border: 2px solid rgb(248, 132, 23);
+    border-collapse: collapse;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 16px;
+}
+
+tr, td {
+  padding: 5px;
+  text-align: center;
+  color: #818181; 
+  border: 2px solid rgb(248, 132, 23);
+  font-size: medium;
+}
+
+th {
+  padding: 5px;
+  text-align: center;
+  color: #818181; 
+  border: 2px solid rgb(248, 132, 23);
+  font-size: medium;
+}
+
+th:hover {
+  color: rgb(248, 132, 23) !important;
+}
+
+th:focus {
+    color: rgb(248, 132, 23);
+  }
+
+.headers {
+    color: #818181; 
+    text-align: center;
+}
+
+.headers:hover {
+    color: rgb(248, 132, 23); 
+}
+
+.seperator {
+    padding-top: 30px;
+}
+
+.textbox {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    padding-top: 6px;
+    padding-bottom: 3px;
+    padding-right: 10px;
+    color: #818181; 
+    font-size: medium;
+    text-align: center;
+    box-sizing: border-box;
+    background-color: transparent;
+    border: solid 2px transparent;
+}
+
+.textbox:hover {
+    border-color: rgb(248, 132, 23);
+}
+
+.textbox:focus {
+    outline: rgb(248, 132, 23) !important;
+}
+
+.buttontable {
+    background-color: transparent; 
+    color: #818181;
+    padding: 10px 10px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    border: solid 2px transparent;
+}
+
+.buttontable:hover {
+    color: rgb(248, 132, 23);
+    border-color: rgb(248, 132, 23);
+}
+
+.buttontable:focus {
+    outline: rgb(248, 132, 23) !important;
+}
+
+.textboxsettings {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    padding-top: 6px;
+    padding-bottom: 3px;
+    padding-right: 10px;
+    color: #818181; 
+    font-size: medium;
+    text-align: center;
+    box-sizing: border-box;
+    background-color: transparent;
+    border: solid 2px transparent;
+    display: none;  
+}
+
+.textboxsettings:hover {
+    border-color: rgb(248, 132, 23);
+}
+
+.textboxsettings:focus {
+    outline: rgb(248, 132, 23) !important;
+}
+
+.headerssettings {
+    color: #818181; 
+    text-align: center;
+    display: none;
+}
+
+.headerssettings:hover {
+    color: rgb(248, 132, 23); 
+}
+
+.cut {
+    color: #818181; 
+    text-align: center;
+    font-size: xx-large;
+    border: solid 2px transparent;
+}
+
+.cut:hover {
+    color: rgb(248, 132, 23); 
+    border-color: rgb(248, 132, 23);
+}
+
+.cut:focus {
+    outline: rgb(248, 132, 23) !important;
+}
