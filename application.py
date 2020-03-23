@@ -14,8 +14,8 @@ def login():
             return redirect("/register")
         username = request.form.get("username").lower()
         password = request.form.get("password")
-        if len(username) > 100 or len(password) > 100:
-            return render_template("login.html", alert="Username or password has more than 100 digits")
+        if len(username) > 255 or len(password) > 255:
+            return render_template("login.html", alert="Username or password has more than 255 digits")
         if username == "":
             return render_template("login.html", alert="Enter a valid username")
         if password == "":
@@ -45,8 +45,8 @@ def register():
             username = request.form.get("username").lower()
             password = request.form.get("password")
             passwordconf = request.form.get("passwordconf")
-            if len(username) > 100 or len(password) > 100:
-               return render_template("register.html", alert="Username or password has more than 100 digits")
+            if len(username) > 255 or len(password) > 255:
+               return render_template("register.html", alert="Username or password has more than 255 digits")
             if username == "":
                 return render_template("register.html", alert="Enter a valid username")
             if password == "":
@@ -65,6 +65,7 @@ def register():
                     return render_template("register.html", alert="Username can't be less than 6 digits")
             if len(password) < 6:
                     return render_template("register.html", alert="Password can't be less than 6 digits")
+
             crsr.execute("SELECT username FROM users WHERE username=:username;", {"username": username})
             sqldata = crsr.fetchall()
             if len(sqldata) != 0:
