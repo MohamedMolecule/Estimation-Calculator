@@ -8,7 +8,8 @@ app.secret_key = '\xbf7r\r\xe9\xdf\x14\xf1\xc3n\x17\x8e'
 @app.route("/", methods=["POST", "GET"])
 def login():
     connection = sqlite3.connect("data.db")
-    crsr = connection.cursor() 
+    crsr = connection.cursor()
+    session.clear()
     if request.method == "POST":
         if request.form['submitbutton'] == "register":
             return redirect("/register")
@@ -40,6 +41,7 @@ def login():
 def register():
     connection = sqlite3.connect("data.db")
     crsr = connection.cursor()
+    session.clear()
     if request.method == "POST":
         if request.form["submitbutton"] == "register":
             username = request.form.get("username").lower()
@@ -96,7 +98,6 @@ def menu():
             session["current"] = 0
             return redirect("/calculator")
         elif request.form['submitbutton'] == "back":
-            session.clear()
             return redirect("/")
         elif request.form["submitbutton"] == "couples":
             session["type"] = "Couples"

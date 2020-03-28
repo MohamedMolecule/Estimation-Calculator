@@ -152,6 +152,7 @@ th:focus {
     text-align: center;
     font-size: xx-large;
     border: solid 2px transparent;
+    background-color: transparent;
 }
 
 .cut:hover {
